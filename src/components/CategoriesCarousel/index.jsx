@@ -6,7 +6,7 @@ import { api } from "../../services/api";
 import { CategoryButton, Container, ContainerItems, Title } from "./styles";
 import { useNavigate } from "react-router-dom";
 
-export function CategoriesCarousel() {
+export default function CategoriesCarousel() {
   const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
 
@@ -15,7 +15,7 @@ export function CategoriesCarousel() {
       const { data } = await api.get("/categories");
 
       console.log(data);
-
+      
       setCategories(data);
     }
     loadCategories();
@@ -50,7 +50,7 @@ export function CategoriesCarousel() {
         itemClass="carousel-item"
       >
         {categories.map((category) => {
-          //console.log(category.url); // Verificar a URL aqui
+          console.log(category.url); // Verificar a URL aqui
           return (
             <ContainerItems
               key={category.id}
@@ -58,12 +58,12 @@ export function CategoriesCarousel() {
             >
               <CategoryButton
                 onClick={() => {
+console.log("Navegação iniciada");
                   console.log("Categoria clicada:", category.id); // Log para conferir a categoria
                   navigate({
                     pathname: "/cardapio",
                     search: `?categoria=${category.id}`,
-                  });
-                  console.log("Navegação iniciada");
+                  });                  
                 }}
               >
                 {category.name}

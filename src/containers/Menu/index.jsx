@@ -104,7 +104,6 @@ export function Menu() {
                   pathname: "/cardapio",
                   search: `?categoria=${category.id}`,
                 },
-                { replace: true } // Substituir a entrada no histórico
               );
 
               // Atualizar estado interno da categoria
