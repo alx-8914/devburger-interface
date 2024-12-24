@@ -30,27 +30,36 @@ const schema = yup.object({
     .typeError("Digite o preço do produto"),
   category: yup.object().required("Escolha um categoria"),
   offer: yup.bool(),
- });
+});
 
 export function EditProduct() {
   const [fileName, setFileName] = useState(null);
   const [categories, setCategories] = useState([]);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const location = useLocation();
+
   const product = location.state?.product || {
     name: "",
     price: 0,
     category: null,
   };
-  
+  console.log(product);
+
   useEffect(() => {
     if (!location.state?.product) {
       navigate("/admin/editar-produto"); // Redireciona para a listagem de produtos
     }
   }, [location.state, navigate]);
-  
+
+  useEffect(() => {
+    async function loadCategories() {
+      const { data } = await api.get("/categories");
+      setCategories(data);
+    }
+    loadCategories();
+  }, []);
 
   const {
     register,
@@ -77,7 +86,7 @@ export function EditProduct() {
     });
 
     setTimeout(() => {
-      navigate('/admin/produtos');
+      navigate("/admin/produtos");
     }, 2000);
   };
 
@@ -146,12 +155,14 @@ export function EditProduct() {
 
         <InputGroup>
           <ContainerCheckbox>
-            <input
-              type="checkbox "
-              {...register("offer")}
-              defaultChecked={product?.offer || false} 
-            />
-            <Label htmlFor="offer">Produto em Oferta ?</Label>
+            <Label>
+              <input
+                type="button"
+                {...register("offer")}
+                defaultChecked={product?.offer}
+              />
+              Produto em Oferta ?
+            </Label>
           </ContainerCheckbox>
         </InputGroup>
 

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-
 import { api } from "../../services/api";
 import { CategoryButton, Container, ContainerItems, Title } from "./styles";
 import { useNavigate } from "react-router-dom";
@@ -12,11 +11,13 @@ export default function CategoriesCarousel() {
 
   useEffect(() => {
     async function loadCategories() {
-      const { data } = await api.get("/categories");
-
-      console.log(data);
-      
-      setCategories(data);
+      try {
+        const { data } = await api.get("/categories");
+        console.log("Categorias carregadas:", data);
+        setCategories(data);
+      } catch (error) {
+        console.error("Erro ao carregar categorias:", error);
+      }
     }
     loadCategories();
   }, []);
@@ -49,28 +50,34 @@ export default function CategoriesCarousel() {
         partialVisbile={false}
         itemClass="carousel-item"
       >
-        {categories.map((category) => {
-          console.log(category.url); // Verificar a URL aqui
-          return (
+        {categories.length > 0 ? (
+          categories.map((category) => (
             <ContainerItems
               key={category.id}
               $imageurl={`http://localhost:3001/category-file/${category.path}`}
             >
               <CategoryButton
+              key={category.id}
                 onClick={() => {
-console.log("Navegação iniciada");
-                  console.log("Categoria clicada:", category.id); // Log para conferir a categoria
-                  navigate({
-                    pathname: "/cardapio",
-                    search: `?categoria=${category.id}`,
-                  });                  
+                  if (!category.id) {
+                    console.error("Erro: ID da categoria está indefinido!");
+                  } else {
+                    console.log("Categoria ID:", category.id);
+                    navigate({
+                      pathname: "/cardapio",
+                      search: `?categoria=${category.id}`,
+                    });
+                    console.log("Navegação realizada para:", `/cardapio?categoria=${category.id}`);
+                  }
                 }}
               >
                 {category.name}
               </CategoryButton>
             </ContainerItems>
-          );
-        })}
+          ))
+        ) : (
+          <p>Carregando categorias...</p>
+        )}
       </Carousel>
     </Container>
   );
