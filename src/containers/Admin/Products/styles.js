@@ -1,6 +1,13 @@
 import styled from "styled-components";
 
-export const Container = styled.div``
+export const Container = styled.div`
+  .MuiTableHead-root {
+    font-weight: bolder;
+    color:  ${(props) => props.theme.white};
+    background: ${(props) => props.theme.purple};
+    border-radius: 5px;
+  }
+  `;
 
 export const ProductImage = styled.img`
 height: 80px;

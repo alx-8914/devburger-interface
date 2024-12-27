@@ -1,6 +1,15 @@
 import styled from "styled-components";
 import Select from "react-select";
 
+export const Container = styled.div`
+  .MuiTableHead-root {
+    font-weight: bolder;
+    color:  ${(props) => props.theme.white};
+    background: #9758a6;
+    border-radius: 5px;
+  }
+  `;
+
 export const ProductImage = styled.img`
 height: 80px;
 padding: 12px;

@@ -47,7 +47,7 @@ export function Products() {
           <TableHead>
             <TableRow>
               <TableCell>Nome</TableCell>
-              <TableCell align="center">Preço</TableCell>
+              <TableCell  align="center">Preço</TableCell>
               <TableCell align="center">Produto em Oferta</TableCell>
               <TableCell align="center">Imagem do Produto</TableCell>
               <TableCell align="center">Editar</TableCell>

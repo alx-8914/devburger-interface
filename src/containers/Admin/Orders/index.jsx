@@ -7,7 +7,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 
 import { Row } from "./row";
-import { FilterOption, Filter } from './styles'
+import { FilterOption, Filter, Container } from './styles'
 import { api } from "../../../services/api";
 import { useEffect, useState } from "react";
 import { ordersStatusOptions } from "./ordersStatus";
@@ -75,7 +75,7 @@ export function Orders() {
   }, [orders])
 
   return (
-    <>
+    <Container>
       <Filter>
         {ordersStatusOptions.map((status) => (
           <FilterOption 
@@ -109,6 +109,6 @@ export function Orders() {
           </TableBody>
         </Table>
       </TableContainer>
-    </>
+    </Container>
   );
 }
