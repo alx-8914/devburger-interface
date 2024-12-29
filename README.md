@@ -23,12 +23,17 @@
 </div>
 <div>
     <h2>Aqui temos a Apresentação do Projeto; 💻</h2>
+  <img src="Captura de tela 2024-12-29 123927.png"/>
+  <img src="Captura de tela 2024-12-27 124414.png"/>
+  <img src="Captura de tela 2024-12-29 123653.png"/>
+  <img src="Captura de tela 2024-12-29 123524.png"/>
+  <img src="Captura de tela 2024-12-29 123733.png"/>
+  <img src="Captura de tela 2024-12-29 123835.png"/>
+  <img src="Captura de tela 2024-11-03 120235.png"/>
+  <img src="Captura de tela 2024-12-27 113429.png"/>
+  <img src="Captura de tela 2024-12-18 234120.png"/>
+  <img src="Captura de tela 2024-12-18 234034.png"/>
 </div>
-
-
-
-
-  
 # React + Vite 
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
